@@ -1,0 +1,42 @@
+.splash-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #7eaace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeOut 1s ease 2500ms forwards;
+  }
+  
+  .splash-logo {
+    width: 150px;
+    animation: zoomFadeIn 2s ease;
+  }
+  
+  .splash-text {
+    color: white;
+    margin-top: 20px;
+    animation: zoomFadeIn 2s ease;
+  }
+  
+  @keyframes zoomIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+  
+  @keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+
+  @keyframes zoomFadeIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }

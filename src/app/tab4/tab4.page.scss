@@ -1,0 +1,25 @@
+.boton-login-usuario {
+    height: 100px;
+    width: 100px;
+    margin: 2px;
+    border-radius: 95%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: #6dcdfa;
+  }
+
+  .logo-app {
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    height: 200px;
+    width: 200px;
+  }
+
+  .acceso-rapido {
+    display: flex;
+    margin: auto;
+    gap: 20px;
+    justify-content: center;
+  }
