@@ -22,15 +22,53 @@
       <ion-icon aria-hidden="true" name="enter-sharp"></ion-icon>
       <ion-label>Entrar</ion-label>
     </ion-tab-button>
-    <ion-tab-button style="color: #6dcdfa;" *ngIf="!logueado" (click)="Registrarse()">
+
+    <ion-tab-button style="color: #6dcdfa;" *ngIf="!logueado" (click)="mostrarRegistro()">
       <ion-icon aria-hidden="true" name="pencil-sharp"></ion-icon>
       <ion-label>Registrarse</ion-label>
     </ion-tab-button>
+
     <ion-tab-button style="color: #6dcdfa;" *ngIf="logueado" (click)="CerrarSesion()">
       <ion-icon aria-hidden="true" name="exit-sharp"></ion-icon>
       <ion-label>Salir</ion-label>
     </ion-tab-button>
 
+  </ion-card>
+
+
+  <ion-card *ngIf="mostrarFormRegistro" style="border: 2px solid; border-color: #455cdd;" id="RegistroForm">
+    <ion-card-header>Registro Nuevo Usuario</ion-card-header>
+
+    <form [formGroup]="form">
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-input type="email" formControlName="correo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contraseña:</ion-label>
+        <ion-input type="password" formControlName="clave"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Perfil:</ion-label>
+        <ion-select formControlName="perfil">
+          <ion-select-option value="admin">admin</ion-select-option>
+          <ion-select-option value="invitado">invitado</ion-select-option>
+          <ion-select-option value="usuario">usuario</ion-select-option>
+          <ion-select-option value="tester">tester</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sexo:</ion-label>
+        <ion-select formControlName="sexo">
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="femenino">Femenino</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-button expand="block" (click)="Registrarse()" [disabled]="form.invalid">Confirmar Registro</ion-button>
+      <ion-button expand="block" fill="clear" color="medium" (click)="mostrarRegistro()">Cancelar</ion-button>
+    </form>
   </ion-card>
   
   <br>

@@ -14,9 +14,14 @@ export class Tab3Page {
     this.mi_color = "";
   }
 
-  CambiarColor(color: string){
+  almacenarCosasFeas(){
 
-    this.mi_color = color;
   }
+  
+  almacenarCosasLindas(){
+
+  }
+
+  
 
 }

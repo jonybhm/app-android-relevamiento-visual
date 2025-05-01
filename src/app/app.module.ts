@@ -12,7 +12,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { SplashPage } from './splash/splash.page';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({

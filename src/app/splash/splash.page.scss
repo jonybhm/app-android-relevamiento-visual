@@ -16,7 +16,14 @@
   }
   
   .splash-text {
-    color: white;
+    color: rgb(54, 54, 54);
+    margin-top: 20px;
+    animation: zoomFadeIn 2s ease;
+    font-size: 40px;
+  }
+
+  .splash-text2 {
+    color: rgb(54, 54, 54);
     margin-top: 20px;
     animation: zoomFadeIn 2s ease;
   }

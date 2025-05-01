@@ -1,28 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Podés cambiar el color!!!
+      Relevamiento del edificio    
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" color="{{mi_color}}">
-  <ion-card >
-    <ion-card-header>Cambiar el color de fondo</ion-card-header>
+  <ion-card color="secondary" (click)="almacenarCosasLindas()">
+    <ion-card-header class="card-text">Cosas Lindas:</ion-card-header>
     <ion-card-content> 
-      <ion-label>Seleccionar Color:</ion-label>
-      <ion-select #color>
-        <ion-select-option value="primary">Primary</ion-select-option>
-        <ion-select-option value="secondary">Secondary</ion-select-option>
-        <ion-select-option value="tertiary">Tertiary</ion-select-option>
-        <ion-select-option value="success">Success</ion-select-option>
-        <ion-select-option value="warning">Warning</ion-select-option>
-        <ion-select-option value="danger">Danger</ion-select-option>
-        <ion-select-option value="light">Light</ion-select-option>
-        <ion-select-option value="medium">Medium</ion-select-option>
-        <ion-select-option value="dark">Dark</ion-select-option>
-      </ion-select>
-      <ion-button color="secondary" ion-button block (click)="CambiarColor(color.value)">Cambiar Color</ion-button>
+      <img src="../../assets/cosaslindas.png" alt="cosaslindasboton"  class="boton">
+    </ion-card-content>
+  </ion-card>
+  <ion-card color="tertiary" (click)="almacenarCosasFeas()" >
+    <ion-card-header class="card-text">Cosas Feas:</ion-card-header>
+    <ion-card-content> 
+      <img src="../../assets/cosafeas.png" alt="cosaslindasboton" class="boton">
     </ion-card-content>
   </ion-card>
 </ion-content>
