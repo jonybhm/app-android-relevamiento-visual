@@ -234,7 +234,7 @@ export class Tab4Page implements OnInit {
         this.contrasena = "222222";
       break;
       case 'usuario2':
-        this.usuario = "admnin@admin.com";
+        this.usuario = "admin@admin.com";
         this.contrasena = "111111";
       break;
       case 'usuario3':

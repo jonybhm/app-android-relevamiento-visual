@@ -14,24 +14,23 @@
   <ion-card color="secondary">
     <ion-card-header class="card-text">Cosas Lindas:</ion-card-header>
     <ion-card-content> 
-      <ion-list color="primary">
-          <ion-item>
-            <ion-radio>Elemento 1</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 2</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 3</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 4</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 5</ion-radio>
-          </ion-item>
-      </ion-list>
-   
+      <ion-list>
+        <ion-item *ngFor="let item of cosasLindas">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="item.url" (click)="abrirImagen(item.url)"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ item.nombre }}</h2>
+            <p>Likes: {{ item.likes }}</p>
+          </ion-label>
+          <ion-button fill="clear" (click)="darLike(item,'cosas_lindas')">
+            <ion-icon [name]="usuarioDioLike(item) ? 'heart' : 'heart-outline'" color="danger"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="tertiary" *ngIf="item.usuario === usuarioActual.email" (click)="eliminarItem(item, 'cosas_lindas')">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>   
     </ion-card-content>
   </ion-card>
 
@@ -39,23 +38,23 @@
   <ion-card color="tertiary">
     <ion-card-header class="card-text">Cosas Feas:</ion-card-header>
     <ion-card-content> 
-      <ion-list color="primary" class="lista">
-          <ion-item>
-            <ion-radio>Elemento 1</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 2</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 3</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 4</ion-radio>
-          </ion-item>
-          <ion-item>
-            <ion-radio>Elemento 5</ion-radio>
-          </ion-item>
-      </ion-list>
+      <ion-list>
+        <ion-item *ngFor="let item of cosasFeas">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="item.url" (click)="abrirImagen(item.url)"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ item.nombre }}</h2>
+            <p>Likes: {{ item.likes }}</p>
+          </ion-label>
+          <ion-button fill="clear" (click)="darLike(item,'cosas_feas')">
+            <ion-icon [name]="usuarioDioLike(item) ? 'heart' : 'heart-outline'" color="danger"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="tertiary" *ngIf="item.usuario === usuarioActual.email" (click)="eliminarItem(item, 'cosas_feas')">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list> 
     </ion-card-content>
   </ion-card>
 </ion-content>

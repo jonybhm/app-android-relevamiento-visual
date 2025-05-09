@@ -21,6 +21,13 @@ export const environment = {
   }  
 };
 
+
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = 'https://cajfqwqdaennyaaakxvo.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhamZxd3FkYWVubnlhYWFreHZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY2NzM3MDYsImV4cCI6MjA2MjI0OTcwNn0.9jxR4IEYNrVs3gdlExh6LojgvBmRQ-LkDFBQzBUpGQI';
+
+export const supabase = createClient(supabaseUrl, supabaseKey);
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

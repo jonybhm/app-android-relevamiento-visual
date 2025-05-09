@@ -1,14 +1,34 @@
-.boton{
-    display: flex;
-    margin: auto;
-    gap: 20px;
-    justify-content: center;    
-    width: 250px;
-    height: 250px;
-}
+// .boton{
+//     display: flex;
+//     margin: auto;
+//     gap: 20px;
+//     justify-content: center;    
+//     width: auto;
+//     height: auto;
+// }
 
 .card-text{
     color: rgb(54, 54, 54);
     display: flex;
     font-size: 50px;
 }
+
+ion-card{
+    display: flex;
+    margin: auto;
+    gap: 50px;
+    justify-content: center;    
+    width: 100vw;
+    height: 43vh;
+
+}
+
+ion-card-content{
+    display: flex;
+    margin: auto;
+    justify-content: center;    
+    width: auto;
+    height: auto;
+
+}
+
