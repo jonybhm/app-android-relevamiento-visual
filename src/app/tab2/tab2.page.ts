@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SpinnerService } from '../servicios/spinner.service';
+import { SonidosService } from '../servicios/sonidos.service';
 
 @Component({
   selector: 'app-tab2',
@@ -10,11 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class Tab2Page implements OnInit {
 
   constructor(
+    private spinner: SpinnerService,
+    private sonido: SonidosService
 
   ) { }
 
 
   ngOnInit() {
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
 

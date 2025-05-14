@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { SpinnerService } from './servicios/spinner.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -7,8 +7,15 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  isLoading = false;
 
+  constructor(
+    private spinnerService: SpinnerService,
+  ) {
+    this.spinnerService.loading$.subscribe(value => {
+      this.isLoading = value;
+    });
+  }
   showSplash = true;
 
   ngOnInit() 

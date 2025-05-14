@@ -13,16 +13,22 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { SplashPage } from './splash/splash.page';
 import { ReactiveFormsModule } from '@angular/forms';
+import { provideLottieOptions } from 'ngx-lottie';
+import { playerFactory } from 'src/main';
+import { SpinnerPage } from './spinner/spinner.page';
+import { LottieComponent } from 'ngx-lottie';
 
 
 @NgModule({
-  declarations: [AppComponent, SplashPage],
-  imports: [    BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  declarations: [AppComponent, SplashPage, SpinnerPage],
+  imports: [    BrowserModule, IonicModule.forRoot(), AppRoutingModule,LottieComponent],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
       provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
       provideAuth(() => getAuth()), 
       provideFirestore(() => getFirestore()), 
       provideStorage(() => getStorage()), 
+      provideLottieOptions({player:playerFactory})
+
       ],
   bootstrap: [AppComponent],
 })

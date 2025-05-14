@@ -5,7 +5,8 @@ import { doc, updateDoc, arrayUnion, increment,arrayRemove,deleteDoc  } from 'fi
 import { getAuth,onAuthStateChanged  } from "firebase/auth";
 import { ModalController } from '@ionic/angular';
 import { ImagenPage } from '../imagen/imagen.page';
-
+import { SpinnerService } from '../servicios/spinner.service';
+import { SonidosService } from '../servicios/sonidos.service';
 
 @Component({
   selector: 'app-tab1',
@@ -25,11 +26,21 @@ export class Tab1Page implements OnInit {
 
   constructor(
     private firestore: Firestore,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,    
+    private spinner: SpinnerService,
+    private sonido: SonidosService
+
   ) { }
 
   ngOnInit() 
   { 
+    
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
+
     const auth = getAuth();
 
     onAuthStateChanged(auth, (user) => {
@@ -123,6 +134,8 @@ export class Tab1Page implements OnInit {
 
   async abrirImagen(imagenUrl: string) 
   {
+        this.sonido.ejecutarSonido('abrir');
+
     const modal = await this.modalCtrl.create({
       component: ImagenPage,
       componentProps: { imagenUrl: imagenUrl }

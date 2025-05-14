@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
@@ -6,27 +6,41 @@ import { getFirestore, collection, addDoc ,updateDoc} from "firebase/firestore";
 import { ErrorService } from '../../app/servicios/error-toast.service';
 import { supabase } from '../../environments/environment';
 
+
+import { SpinnerService } from '../servicios/spinner.service';
+import { SonidosService } from '../servicios/sonidos.service';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   standalone: false,
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
 
   constructor(
         private error:ErrorService,  
         public auth: Auth,
+    private spinner: SpinnerService,
+    private sonido: SonidosService
   
   ) {
 
   }
 
+  ngOnInit(): void {
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
+  }
   async almacenarCosasLindas() {
+    this.sonido.ejecutarSonido('camara');
     await this.tomarFotoYGuardar('cosas_lindas');
   }
 
   async almacenarCosasFeas() {
+    this.sonido.ejecutarSonido('camara');
     await this.tomarFotoYGuardar('cosas_feas');
   }
 
