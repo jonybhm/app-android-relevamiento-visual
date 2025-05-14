@@ -1,3 +1,17 @@
-.lista{
-    overflow-y: scroll;
+
+
+ion-card {
+  max-height: 325px; 
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+ion-card-content{
+    display: flex;
+    margin: auto;
+    justify-content: center;    
+    width: 250px;
+    height: 250px;
+
 }
