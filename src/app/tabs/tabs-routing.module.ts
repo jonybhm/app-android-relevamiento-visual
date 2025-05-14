@@ -9,6 +9,11 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'tab0',
+        loadChildren: () => import('../tab0/tab0.module').then(m => m.Tab0PageModule),
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'tab1',
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule),
         canActivate: [AuthGuard]

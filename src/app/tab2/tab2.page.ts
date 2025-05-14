@@ -5,6 +5,8 @@ import { collectionData } from 'rxfire/firestore';
 import { SpinnerService } from '../servicios/spinner.service';
 import { SonidosService } from '../servicios/sonidos.service';
 
+import { ModalController } from '@ionic/angular';
+import { ImagenPage } from '../imagen/imagen.page';
 @Component({
   selector: 'app-tab2',
   templateUrl: './tab2.page.html',
@@ -21,7 +23,9 @@ export class Tab2Page implements OnInit {
   constructor(
     private spinner: SpinnerService,
     private sonido: SonidosService,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private modalCtrl: ModalController,    
+
 
   ) { }
 
@@ -63,33 +67,39 @@ export class Tab2Page implements OnInit {
 
   mostrarGraficoLindas() 
   {
-    const labels = this.cosasLindas.map(item => item.nombre);
-    const data = this.cosasLindas.map(item => item.likes);
+  const labels = this.cosasLindas.map(item => item.nombre);
+  const data = this.cosasLindas.map(item => item.likes);
+  const ctx = document.getElementById('chartLindas') as HTMLCanvasElement;
 
-    const ctx = document.getElementById('chartLindas') as HTMLCanvasElement;
-
-    if (this.chartLindasRef) 
-    {
-      this.chartLindasRef.destroy();
-    }
-
-    this.chartLindasRef = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: labels,
-        datasets: [{
-          data: data,
-          backgroundColor: this.generarColores(data.length)
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false 
-      }
-    });
+  if (this.chartLindasRef) {
+    this.chartLindasRef.destroy();
   }
 
-  mostrarGraficoFeas() {
+  this.chartLindasRef = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: this.generarColores(data.length)
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      onClick: async (event, elements) => {
+        if (elements.length > 0) {
+          const index = elements[0].index;
+          const item = this.cosasLindas[index];
+          await this.abrirImagen(item.url);
+        }
+      }
+    }
+  });
+}
+
+  mostrarGraficoFeas()
+  {
     const labels = this.cosasFeas.map(item => item.nombre);
     const data = this.cosasFeas.map(item => item.likes);
 
@@ -113,11 +123,18 @@ export class Tab2Page implements OnInit {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        onClick: async (event, elements) => {
+          if (elements.length > 0) {
+            const index = elements[0].index;
+            const item = this.cosasFeas[index];
+            await this.abrirImagen(item.url);
+          }
+        },
         scales: {
           y: {
             beginAtZero: true
           }
-        }
+        }        
       }
     });
   }
@@ -128,5 +145,15 @@ export class Tab2Page implements OnInit {
     return Array.from({ length: cantidad }, (_, i) => colores[i % colores.length]);
   }
 
+  async abrirImagen(imagenUrl: string) 
+  {
+        this.sonido.ejecutarSonido('abrir');
+
+    const modal = await this.modalCtrl.create({
+      component: ImagenPage,
+      componentProps: { imagenUrl: imagenUrl }
+    });
+    return await modal.present();
+  }
 
 }

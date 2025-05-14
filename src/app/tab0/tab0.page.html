@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Listado Personal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Mi listado</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card color="secondary">
+    <ion-card-header class="card-text">Cosas Lindas:</ion-card-header>
+    <ion-card-content class="contenido-scrollable"> 
+      <ion-list>
+        <ion-item *ngFor="let item of cosasLindas">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="item.url" (click)="abrirImagen(item.url)"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ item.nombre }}</h2>
+            <p>Likes: {{ item.likes }}</p>
+          </ion-label>
+
+          <ion-button fill="clear" color="tertiary" *ngIf="item.usuario === usuarioActual.email" (click)="eliminarItem(item, 'cosas_lindas')">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>   
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card color="tertiary">
+    <ion-card-header class="card-text">Cosas Feas:</ion-card-header>
+    <ion-card-content class="contenido-scrollable"> 
+      <ion-list>
+        <ion-item *ngFor="let item of cosasFeas">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="item.url" (click)="abrirImagen(item.url)"></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ item.nombre }}</h2>
+            <p>Likes: {{ item.likes }}</p>
+          </ion-label>
+
+          <ion-button fill="clear" color="tertiary" *ngIf="item.usuario === usuarioActual.email" (click)="eliminarItem(item, 'cosas_feas')">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list> 
+    </ion-card-content>
+  </ion-card>
+</ion-content>
